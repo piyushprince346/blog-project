@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+{% block body_block %}
+    <div class="jumbotron">
+        <h3>Do you really want to delete this post ({{blogpost}})..?</h3>
+        <form method="POST" >
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+        <a href="{% url 'blog:blog_details' pk=blogpost.pk %}">Cancel</a>
+    </div>
+  
+{% endblock body_block %}

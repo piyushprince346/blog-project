@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+
+{% block body_block %}
+
+    <div class="jumbotron" style='background-color:#00F3FF'>
+        {% if not form.instance.pk %}
+        <h1 style="font-family: cursive;">Crete new blog post here: </h1>
+        {% else %}
+        <h1 style="font-family: cursive;">Update your post here: </h1>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            {% if not form.instance.pk %}
+            <input type="submit" class="btn btn-primary" value="Create Post">
+            {% else %}
+            <input type="submit" class="btn btn-primary" value="Update Post">
+            {% endif %}
+            
+        </form>
+
+        
+    </div>
+    <script>var editor = new MediumEditor('.editable');</script>
+  
+{% endblock body_block %}

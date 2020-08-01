@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+
+{% block body_block %}
+      <br>
+
+      {% if blogpost_list %}
+      
+      {% for post in blogpost_list %}
+
+
+      <div class="post_list">
+
+        <div class="row">
+
+          <div class="col-6 post-title">
+            <h5>Title - <a href="{% url 'blog:blog_details' pk=post.pk %}">{{post.title}}</a></h5>
+          </div>
+          <div class="col-6">
+            <h5 align = 'right'>Topic - {{ post.topic }}</h5>
+          </div>
+
+        </div>
+        <hr color = 'red'>
+
+        <div class="post-content">
+          <p> {{post.text|safe}} </p>
+        </div>
+        <hr color="red">
+
+        <div class="row">
+          <div class="col-5">
+            <h6>Published on: {{post.datepublished}}</h6>
+          </div>
+          <div class="col-3">
+            <h6><a href="{% url 'blog:blog_details' pk=post.pk %}">Comments: </a>{{post.approve_comments.count}} </h6>
+          </div>
+          <div class="col-4">
+            <h6 align = 'right'>By <span class="post-content"> {{post.author}} </span> </h6>
+          </div>
+
+        </div>
+          
+      </div>
+        <br>
+      {% endfor %}
+
+      {% else %}
+      <h1>Sorry, No posts are there from selected filter</h1>
+      {% endif %}
+
+{% endblock body_block %}

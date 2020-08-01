@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block body_block %}
+    <div class="jumbotron" style='background-color:#00F3FF'>
+        <h4 style="font-family: cursive;">Add your comments to the blog ({{post}}) here: </h4>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <input type="submit" class="btn btn-primary" value="Add comment">
+        </form>
+    
+    
+    </div>
+  
+{% endblock body_block %}

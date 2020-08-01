@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+
+{% block body_block %}
+    <div class="jumbotron" style='background-color:#00F3FF'>
+        <h1>Login here: </h1>
+        <h3>Only Superusers are allowed to login here</h3>
+
+        {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input type="submit" class="btn btn-primary" value="Login" >
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+
+
+
+{% endblock %}
